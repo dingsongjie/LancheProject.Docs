@@ -1,0 +1,3 @@
+#如何在LancheProject中使用asp.net mvc?
+nuget 下载安装 Lanche.Mvc.dll
+其实在Lanche.Mvc.dll 中只是把所有的Controller添加到IocManager中，这样controller的创建和销毁都受到Ioc容器管理，controller的所有功能都能照常使用。在使用上推荐Controller尽量只返回视图，数据的返回都通过Ajax与后端(DynamicApi)交互,但是没有规定开发人员一定要这样做。
