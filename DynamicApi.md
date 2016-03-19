@@ -207,8 +207,24 @@ public class StudentApplicationBiz:ApplicationBizBase
          }
     }
 ```
-##如何自定义返回json格式
+##如何自定义返回json格式?
 自定义一个类继承自AjaxResponse，比如在Lanche.Extensions.JqueryDataTable.dll里实现了自定义Response
+```c#
+ public class PagingResultEntity<TEntity>:AjaxResponse where TEntity:class,new()
+    {
+        public PagingResultEntity(PagingEntity<TEntity> pagingEntity,int draw)
+        {
+            this.draw = draw;
+            this.recordsTotal = pagingEntity.EntityTotalCount;
+            this.recordsFiltered = pagingEntity.EntityTotalCount;
+            this.Data = pagingEntity.Entities;
+
+        }
+        public int draw { get;private set; }
+        public long recordsTotal { get; private set; }
+        public int recordsFiltered { get; private set; }
+    }
+```
 
 
 
