@@ -33,3 +33,9 @@
   httpConfiguration.Filters.Remove(...)
   httpConfiguration.Filters.Add(CustomAttribute);
 ```
+因为错误过滤用的就是WebApi所以直接用WebApi的方法就可以了
+
+
+
+
+在使用ApplicationBiz时，请求的异常处理处理，照常在Controller里去处理

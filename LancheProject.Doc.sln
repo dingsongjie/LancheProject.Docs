@@ -8,8 +8,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{07173F5C-9A6F-4A7E-B25E-1C248C000448}"
 	ProjectSection(SolutionItems) = preProject
 		ApplicationBiz.md = ApplicationBiz.md
+		cache.md = cache.md
 		DynamicApi.md = DynamicApi.md
+		Entityframework.md = Entityframework.md
 		Exception.md = Exception.md
+		log.md = log.md
+		MessageQueue.md = MessageQueue.md
+		module.md = module.md
+		mongodb.md = mongodb.md
 		Mvc.md = Mvc.md
 	EndProjectSection
 EndProject
