@@ -1,6 +1,6 @@
-#Lanche.Entityframework
-EntityFrameworkÖÐµÄDbContextÄ¬ÈÏÇé¿öÏÂÊÜµ½UnitOfWork¹ÜÀí
-Ê×ÏÈ¶¨ÒåÒ»¸öDbContext£¬Õâ¸öÓÃ·¨ºÍÔ­±¾µÄefÒ»Ä£Ò»Ñù
+﻿#Lanche.Entityframework
+EntityFramework?–???μ??DbContext?????????????????????????μ??UnitOfWork?1???€?-
+???—???????¨?’?￥?’??????DbContext?￡?????￠?????“???·?¨?o???”?-?±???μ??ef?’?????￡?’???‘?1
 ```c#
  public  class TestDbContext : DbContext
     {
@@ -17,7 +17,7 @@ EntityFrameworkÖÐµÄDbContextÄ¬ÈÏÇé¿öÏÂÊÜµ½UnitOfWork¹ÜÀí
         }
     }
 ```
-È»ºó ¿ò¼Ü»áÔÚ³õÊ¼»¯ÖÐ×¢ÈëËùÓÐ¼Ì³Ð×ÔDbContextµÄefÊý¾Ý¿â·ÃÎÊ¶ÔÏó£¬²¢×¢ÈëÆäÖÐµÄÃ¿Ò»¸öDbSet,¿ª·¢ÈËÔ±Ö»ÐèÔÚServiceÖÐÖ±½ÓÊ¹ÓÃ¼´¿É
+?????o?3 ???2?????????”???3?μ???????ˉ?–???—?￠???????1?“???????3???—?”DbContext?μ??ef???????????￠?·?????????”???3?￡???2?￠?—?￠???????¤?–???μ???????’??????DbSet,???a?·?￠?????”?±?–?????¨?”??Service?–???–?±???“???1?“?????′???‰
 ```c#
  public class TestApplicationService : ApplicationServiceBase
     {
@@ -38,156 +38,156 @@ EntityFrameworkÖÐµÄDbContextÄ¬ÈÏÇé¿öÏÂÊÜµ½UnitOfWork¹ÜÀí
         }
   }
 ```
-ÉÏÃæµÄStudentRepositoryÊôÓÚ¹¹Ôìº¯Êý×¢Èë£¬µ±È»castle windsor Ò²ÊÇÖ§³ÖÊôÐÔ×¢ÈëµÄ
-IEfRepository<>Ìá¹©µÄ·½·¨ÈçÏÂ
-##²éÑ¯
+?‰?????|?μ??StudentRepository???′?“???1?1?”???o?ˉ?????—?￠?????￡???μ?±????castle windsor ?’?2?????–?§?3?–???′???”?—?￠?????μ??
+IEfRepository<>?????1???μ???·???·?¨???§????
+##?2???‘?ˉ
 ```c#
  /// <summary>
-        /// µÃµ½ IQueryable ,ÒÔÌá¹©linq ²éÑ¯ÄÜÁ¦
+        /// ?μ???μ?? IQueryable ,?’?”?????1??linq ?2???‘?ˉ???????|
         /// </summary>
         /// <returns></returns>
         IQueryable<TEntity> GetAll();
 
         /// <summary>
-        /// ·µ»ØËùÓÐÊµÌåList
+        /// ?·?μ???????1?“?????μ???￥List
         /// </summary>
-        /// <returns>ÊµÌåList</returns>
+        /// <returns>???μ???￥List</returns>
         List<TEntity> GetAllList();
 
         /// <summary>
-        /// ·µ»ØËùÓÐÊµÌåList
+        /// ?·?μ???????1?“?????μ???￥List
         /// </summary>
-        /// <returns>ÊµÌåList</returns>
+        /// <returns>???μ???￥List</returns>
         Task<List<TEntity>> GetAllListAsync();
 
 
 
         /// <summary>
-        /// ¸ù¾Ý lambda ·µ»Ø ÊµÌåList
+        /// ???1???? lambda ?·?μ???? ???μ???￥List
         /// </summary>
-        /// <param name="predicate">where Ìõ¼þ</param>
-        /// <returns>ÊµÌå list</returns>
+        /// <param name="predicate">where ???μ????</param>
+        /// <returns>???μ???￥ list</returns>
         List<TEntity> GetAllList(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        /// ¸ù¾Ý lambda ·µ»Ø ÊµÌåList
+        /// ???1???? lambda ?·?μ???? ???μ???￥List
         /// </summary>
-        /// <param name="predicate">where Ìõ¼þ</param>
-        /// <returns>ÊµÌå list</returns>
+        /// <param name="predicate">where ???μ????</param>
+        /// <returns>???μ???￥ list</returns>
         Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);
          /// <summary>
-        /// 返回所有实体List不再内存中缓存，不做状态跟�?
+        /// è?”????‰€??‰?????“List????????…?-???-??“?-??????????????€?è·?è??
         /// </summary>
-        /// <returns>实体List</returns>
+        /// <returns>?????“List</returns>
         List<TEntity> GetAllListNoTracking();
         /// <summary>
-        /// 返回所有实体List不再内存中缓存，不做状态跟�?异步方法
+        /// è?”????‰€??‰?????“List????????…?-???-??“?-??????????????€?è·?è??????-￥?–1?3?
         /// </summary>
-        /// <returns>实体List</returns>
+        /// <returns>?????“List</returns>
         Task<List<TEntity>> GetAllListNoTrackingAsync();
         /// <summary>
-        /// 根据 lambda 返回 实体List 不做状态跟�?
+        /// ??1??? lambda è?”??? ?????“List ??????????€?è·?è??
         /// </summary>
-        /// <param name="predicate">where 条件</param>
-        /// <returns>实体 list</returns>
+        /// <param name="predicate">where ??????</param>
+        /// <returns>?????“ list</returns>
         List<TEntity> GetAllListNoTracking(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
-        /// 根据 lambda 返回 实体List 不做状态跟�?异步
+        /// ??1??? lambda è?”??? ?????“List ??????????€?è·?è??????-￥
         /// </summary>
-        /// <param name="predicate">where 条件</param>
-        /// <returns>实体 list</returns>
+        /// <param name="predicate">where ??????</param>
+        /// <returns>?????“ list</returns>
         Task<List<TEntity>> GetAllListNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
-        /// ·µ»Øµ¥¸ö£¬ÕÒµ½¶à¸ö Ö±½Ó±¨´í
+        /// ?·?μ?????μ?￥?????￡?????’?μ?????????? ?–?±???“?±?¨?′?-
         /// </summary>
-        /// <param name="predicate">where Ìõ¼þ</param>
+        /// <param name="predicate">where ???μ????</param>
         /// <returns></returns>
         TEntity Single(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
-        /// ·µ»Øµ¥¸ö£¬ÕÒµ½¶à¸ö Ö±½Ó±¨´í
+        /// ?·?μ?????μ?￥?????￡?????’?μ?????????? ?–?±???“?±?¨?′?-
         /// </summary>
-        /// <param name="predicate">where Ìõ¼þ</param>
+        /// <param name="predicate">where ???μ????</param>
         /// <returns></returns>
         Task<TEntity> SingleAsync(Expression<Func<TEntity, bool>> predicate);
 
 
         /// <summary>
-        /// µÃµ½µÚÒ»¸ö
+        /// ?μ???μ???μ???’??????
         /// </summary>
-        /// <param name="predicate">where Ìõ¼þ</param>
+        /// <param name="predicate">where ???μ????</param>
         TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
-        /// µÃµ½µÚÒ»¸ö
+        /// ?μ???μ???μ???’??????
         /// </summary>
-        /// <param name="predicate">where Ìõ¼þ</param>
+        /// <param name="predicate">where ???μ????</param>
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
          /// <summary>
-        /// 返回单个，找到多�?直接报错 不做状态跟�?
+        /// è?”????????a????‰???°?¤??????′??￥??￥é”? ??????????€?è·?è??
         /// </summary>
-        /// <param name="predicate">where 条件</param>
+        /// <param name="predicate">where ??????</param>
         /// <returns></returns>
         TEntity SingleNoTracking(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
-        /// 返回单个，找到多�?直接报错 不做状态跟�?async
+        /// è?”????????a????‰???°?¤??????′??￥??￥é”? ??????????€?è·?è??async
         /// </summary>
-        /// <param name="predicate">where 条件</param>
+        /// <param name="predicate">where ??????</param>
         /// <returns></returns>
         Task<TEntity> SingleNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
-        /// 得到第一�?或�?null  不做状态跟�?
+        /// ??—??°?????€?????–è€?null  ??????????€?è·?è??
         /// </summary>
-        /// <param name="predicate">where 条件</param>
+        /// <param name="predicate">where ??????</param>
         TEntity FirstOrDefaultNoTracking(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
-        /// 得到第一�?或�?null   不做状态跟�?async
+        /// ??—??°?????€?????–è€?null   ??????????€?è·?è??async
         /// </summary>
-        /// <param name="predicate">where 条件</param>
+        /// <param name="predicate">where ??????</param>
         Task<TEntity> FirstOrDefaultNoTrackingAsync(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        /// ·ÖÒ³
+        /// ?·?–?’?3
         /// </summary>
         /// <param name="query">where</param>
-        /// <param name="pageIndex">µ±Ç°Ò³</param>
-        /// <param name="pageSize">Ò³size</param>
+        /// <param name="pageIndex">?μ?±???°?’?3</param>
+        /// <param name="pageSize">?’?3size</param>
         /// <param name="orderPropertyName">order Property</param>
-        /// <param name="sort"> Õý»òÄæ </param>
-        /// <returns>°üº¬ËùÓÐ·ÖÒ³ÐÅÏ¢µÄÊý¾Ý´«µÝ¶ÔÏó</returns>
+        /// <param name="sort"> ???????2???| </param>
+        /// <returns>?°???o?????1?“???·?–?’?3???…???￠?μ???????????′???μ?????”???3</returns>
         PagingEntity<TEntity> GetInPaging(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
 
         /// <summary>
-        /// ·ÖÒ³
+        /// ?·?–?’?3
         /// </summary>
         /// <param name="query">where</param>
-        /// <param name="pageIndex">µ±Ç°Ò³</param>
-        /// <param name="pageSize">Ò³size</param>
+        /// <param name="pageIndex">?μ?±???°?’?3</param>
+        /// <param name="pageSize">?’?3size</param>
         /// <param name="orderPropertyName">order Property</param>
-        /// <param name="sort"> Õý»òÄæ </param>
-        /// <returns>°üº¬ËùÓÐ·ÖÒ³ÐÅÏ¢µÄÊý¾Ý´«µÝ¶ÔÏó</returns>
+        /// <param name="sort"> ???????2???| </param>
+        /// <returns>?°???o?????1?“???·?–?’?3???…???￠?μ???????????′???μ?????”???3</returns>
         Task<PagingEntity<TEntity>> GetInPagingAsync(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
          /// <summary>
-        /// 分页 不做状态跟�?
+        /// ???é?μ ??????????€?è·?è??
         /// </summary>
         /// <param name="query">where</param>
-        /// <param name="pageIndex">当前�?/param>
-        /// <param name="pageSize">页size</param>
+        /// <param name="pageIndex">??“?‰?é??/param>
+        /// <param name="pageSize">é?μsize</param>
         /// <param name="orderPropertyName">order Property</param>
-        /// <param name="sort"> 正或�?</param>
-        /// <returns>包含所有分页信息的数据传递对�?/returns>
+        /// <param name="sort"> ?-￡??–é€?</param>
+        /// <returns>??…????‰€??‰???é?μ?????ˉ?????°??????é€’?ˉ1è±?/returns>
         PagingEntity<TEntity> GetInPagingNoTracking(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
         /// <summary>
-        /// 分页 不做状态跟�?async
+        /// ???é?μ ??????????€?è·?è??async
         /// </summary>
         /// <param name="query">where</param>
-        /// <param name="pageIndex">当前�?/param>
-        /// <param name="pageSize">页size</param>
+        /// <param name="pageIndex">??“?‰?é??/param>
+        /// <param name="pageSize">é?μsize</param>
         /// <param name="orderPropertyName">order Property</param>
-        /// <param name="sort"> 正或�?</param>
-        /// <returns>包含所有分页信息的数据传递对�?/returns>
+        /// <param name="sort"> ?-￡??–é€?</param>
+        /// <returns>??…????‰€??‰???é?μ?????ˉ?????°??????é€’?ˉ1è±?/returns>
         Task<PagingEntity<TEntity>> GetInPagingNoTrackingAsync(Expression<Func<TEntity, bool>> query, int pageIndex, int pageSize, string orderPropertyName, bool sort = true);
 
         /// <summary>
-        /// 得到Database对向 以获得ado.net 访问数据库的部分能力
+        /// ??—??°Database?ˉ1??‘ ??￥è?·??—ado.net è??é—???°????o“???é?¨???è?????
         /// </summary>
         /// <returns></returns>
         Database GetDatebase();
@@ -200,35 +200,35 @@ IEfRepository<>Ìá¹©µÄ·½·¨ÈçÏÂ
         Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        /// µ±¸öÊý³¬¹ý 2^31-1
+        /// ?μ?±?????????3???1?? 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         long LongCount();
 
         /// <summary>
-        /// µ±¸öÊý³¬¹ý 2^31-1
+        /// ?μ?±?????????3???1?? 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         Task<long> LongCountAsync();
 
         /// <summary>
-        /// µ±¸öÊý³¬¹ý 2^31-1
+        /// ?μ?±?????????3???1?? 2^31-1
         /// </summary>
         /// <returns>Count of entities</returns>
         long LongCount(Expression<Func<TEntity, bool>> predicate);
 
         Task<long> LongCountAsync(Expression<Func<TEntity, bool>> predicate);
 ```
-##ÐÂÔö
+##?????”??
 ```c#
- ///Í¬²½ Ìí¼Óµ¥¸ö
+ ///?????2?? ???-???“?μ?￥????
         TEntity Insert(TEntity entity);
 
-        ///Òì²½ Ìí¼Óµ¥¸ö
+        ///?’???2?? ???-???“?μ?￥????
         Task<TEntity> InsertAsync(TEntity entity);
 
         /// <summary>
-        /// ÅúÁ¿Ìí¼Ó
+        /// ?…?o???????-???“
         /// </summary>
         /// <param name="entities"></param>
         /// <param name="options"></param>
@@ -236,30 +236,30 @@ IEfRepository<>Ìá¹©µÄ·½·¨ÈçÏÂ
         void BulkInsert(IEnumerable<TEntity> entities, SqlBulkCopyOptions options, int? bulkSize=null);
 
         /// <summary>
-        /// ÅúÁ¿Ìí¼Ó
+        /// ?…?o???????-???“
         /// </summary>
         /// <param name="entities"></param>
         /// <param name="bulkSize"></param>
 
         void BulkInsert(IEnumerable<TEntity> entities, int? bulkSize=null);
 ```
-##¸üÐÂ
+##????????
 /// <summary>
-        /// ¸üÐÂ µ¥¸ö Í¬²½
+        /// ???????? ?μ?￥???? ?????2??
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         TEntity Update(TEntity entity);
 
         /// <summary>
-        /// ¸üÐÂ µ¥¸öÊµÌå Òì²½
+        /// ???????? ?μ?￥???????μ???￥ ?’???2??
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         Task<TEntity> UpdateAsync(TEntity entity);
 
          /// <summary>
-        /// ÅúÁ¿¸üÐÂ
+        /// ?…?o????????????
         /// </summary>
         /// <param name="filter"></param>
         /// <param name="update"></param>
@@ -267,36 +267,36 @@ IEfRepository<>Ìá¹©µÄ·½·¨ÈçÏÂ
         int Update(Expression<Func<TEntity, bool>> filter,Expression<Func<TEntity,TEntity>> update);
 
         /// <summary>
-        /// ÅúÁ¿¸üÐÂÒì²½
+        /// ?…?o?????????????’???2??
         /// </summary>
         /// <param name="filter"></param>
         /// <param name="update"></param>
         /// <returns></returns>
         Task<int> UpdateAsync(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TEntity>> update);
 ```
-##É¾³ý
+##?‰???3??
 ```c#
 /// <summary>
-        /// É¾³ýµ¥¸öÊµÌå
+        /// ?‰???3???μ?￥???????μ???￥
         /// </summary>
         /// <param name="entity"></param>
         void Delete(TEntity entity);
         /// <summary>
-        /// É¾³ýµ¥¸öÊµÌå Òì²½
+        /// ?‰???3???μ?￥???????μ???￥ ?’???2??
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
 
         Task DeleteAsync(TEntity entity);
         /// <summary>
-        /// ÅúÁ¿É¾³ý
+        /// ?…?o?????‰???3??
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
         int Delete(Expression<Func<TEntity, bool>> filter);
 
         /// <summary>
-        /// ÅúÁ¿É¾³ý Òì²½
+        /// ?…?o?????‰???3?? ?’???2??
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>

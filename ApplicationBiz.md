@@ -1,4 +1,4 @@
-﻿#ApplicationBiz业务层
+#ApplicationBiz业务层
 一般的业务对象都要继承自 IApplicationService
 ```c#
   /// <summary>
