@@ -17,13 +17,13 @@ EntityFrameworkÖÐµÄDbContextÄ¬ÈÏÇé¿öÏÂÊÜµ½UnitOfWork¹ÜÀí
         }
     }
 ```
-È»ºó ¿ò¼Ü»áÔÚ³õÊ¼»¯ÖÐ×¢ÈëËùÓÐ¼Ì³Ð×ÔDbContextµÄefÊý¾Ý¿â·ÃÎÊ¶ÔÏó£¬²¢×¢ÈëÆäÖÐµÄÃ¿Ò»¸öDbSet,¿ª·¢ÈËÔ±Ö»ÐèÔÚBizÖÐÖ±½ÓÊ¹ÓÃ¼´¿É
+È»ºó ¿ò¼Ü»áÔÚ³õÊ¼»¯ÖÐ×¢ÈëËùÓÐ¼Ì³Ð×ÔDbContextµÄefÊý¾Ý¿â·ÃÎÊ¶ÔÏó£¬²¢×¢ÈëÆäÖÐµÄÃ¿Ò»¸öDbSet,¿ª·¢ÈËÔ±Ö»ÐèÔÚServiceÖÐÖ±½ÓÊ¹ÓÃ¼´¿É
 ```c#
- public class TestApplicationBiz : ApplicationBizBase
+ public class TestApplicationService : ApplicationServiceBase
     {
         private readonly IEfRepository<Students> _studentRepository;      
 
-        public TestApplicationBiz(IEfRepository<Students> studentRepository, IUnitOfWorkManager uowManger,ILogger logger)
+        public TestApplicationService(IEfRepository<Students> studentRepository, IUnitOfWorkManager uowManger,ILogger logger)
         {
             _studentRepository = studentRepository;
            

@@ -19,13 +19,13 @@
         
     }
 ```
-同样框架会在初始化时 注入MongoDbContext和其中的MongoDbSet,直接在Biz中使用即可
+同样框架会在初始化时 注入MongoDbContext和其中的MongoDbSet,直接在Service中使用即可
 ```c#
- public class MongoDbTestBiz : ApplicationBizBase
+ public class MongoDbTestService : ApplicationServiceBase
     {
         private readonly IMongoDbRepository<Car> _carRepository;
         public IIocManager manager { get; set; }
-        public MongoDbTestBiz(IMongoDbRepository<Car> carRepository)
+        public MongoDbTestService(IMongoDbRepository<Car> carRepository)
         {
             this._carRepository = carRepository;
         }

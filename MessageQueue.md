@@ -22,13 +22,13 @@ LancheProject默认添加了RabbitMq作为消息队列
  <add name="test1" connectionString="hostName=localhost;virtualHost=/;username=guest;password=guest;port=5672" />
 
 ```
-直接在biz中使用
+直接在Service中使用
 ```c#
-   public class RabbitMqTestBiz : ApplicationBizBase
+   public class RabbitMqTestService : ApplicationServiceBase
     {
         private readonly IMessageQueryManager _manager;
        
-        public RabbitMqTestBiz(IMessageQueryManager manager)
+        public RabbitMqTestService(IMessageQueryManager manager)
         {
             this._manager = manager;
             

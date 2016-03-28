@@ -2,7 +2,7 @@
 在微软的mvc，web api框架里 业务层对外开放接口都需要在外面套一层Controller,然后接口的使用者通过url调用该接口,所以基本上要为每个业务类型添加一个controller,
 DynamicApi允许业务层直接开放接口，而不需要写controller,这样就减少了不必要的代码，DynamicApi开放出去的接口url可以自行定义。
 ##如何实现？
-程序启动时反射生成所有Biz信息以及每个Biz中public方法的信息，当有请求匹配到自定义的DynamicApi路由，ControllerSeletor就会查找Biz以及其中的方法如果匹配一致则通过表达式进入执行该ApplicationBiz中的方法,若参数绑定成功，则执行该方法，参数绑定机制也由WebApi提供。
+程序启动时反射生成所有Service信息以及每个ApplicationService中public方法的信息，当有请求匹配到自定义的DynamicApi路由，ControllerSeletor就会查找Service以及其中的方法如果匹配一致则通过表达式进入执行该ApplicationService中的方法,若参数绑定成功，则执行该方法，参数绑定机制也由WebApi提供。
 DynamicApi路由机制由WebApi路由机制提供，不过其中的ControllerSeletor换成了自定义的ControllerSelector,继承自 WebApi DefaultHttpControllerSelector
 ```c#
 /// <summary>
@@ -90,7 +90,7 @@ DynamicApi路由机制由WebApi路由机制提供，不过其中的ControllerSel
 ```
 
 
-同理将替换掉 ActionSelector 并用自定义的ControllerDescriptor,ActionDescriptor做一些额外的工作，比如添加过滤器，还有就是对ApplicationBiz的返回值做一些加工
+同理将替换掉 ActionSelector 并用自定义的ControllerDescriptor,ActionDescriptor做一些额外的工作，比如添加过滤器，还有就是对ApplicationService的返回值做一些加工
 
 
 ```c#
@@ -98,8 +98,8 @@ DynamicApi路由机制由WebApi路由机制提供，不过其中的ControllerSel
         {
 
             dynamic Generic = controllerContext.Controller;
-            var biz = Generic.Biz;
-            controllerContext.Controller = controllerContext.Controller = biz;
+            var Service = Generic.Service;
+            controllerContext.Controller = controllerContext.Controller = Service;
             return base
                 .ExecuteAsync(controllerContext, arguments, cancellationToken)
                 .ContinueWith(task =>
@@ -127,11 +127,11 @@ DynamicApi路由机制由WebApi路由机制提供，不过其中的ControllerSel
                 }, cancellationToken);
         }
 ```
-ExecuteAsync方法最终返回ApplicationBiz中方法返回的值，ContinueWith方法将返回对象包装成一个 AjaxResponse对象 AjaxResponse会被webApi的序列化工具序列化（默认生成json）,最终生成json格式为
+ExecuteAsync方法最终返回ApplicationService中方法返回的值，ContinueWith方法将返回对象包装成一个 AjaxResponse对象 AjaxResponse会被webApi的序列化工具序列化（默认生成json）,最终生成json格式为
 ```json
 {
     Success: boolean,
-    Data:{object} ,//其中object对象即为ApplicationBiz中方法所返回的对象 如果返回集合，则此时其中为数组
+    Data:{object} ,//其中object对象即为ApplicationServices中方法所返回的对象 如果返回集合，则此时其中为数组
     Error: //返回的错误信息
     {
         UnAuthorizedRequest:boolean,   //是否没有权限
@@ -157,20 +157,19 @@ ExecuteAsync方法最终返回ApplicationBiz中方法返回的值，ContinueWith
 默认注册的路由由 api/services开头 ，如果要自定义，修改则要修改源代码，修改路由配置不会对框架产生其他影响，
 路由自定义部分
 ```c#
-  DynamicApiControllerBuilder.ForAll<ApplicationBizBase>(Assembly.GetExecutingAssembly(), "SimpleDynamic").Build();
+  DynamicApiControllerBuilder.ForAll<ApplicationServiceBase>(Assembly.GetExecutingAssembly(), "SimpleDynamic").Build();
 ```
 框架的使用者，在业务层有一个注册当前动态api的方法，这样所欲的DynamicApi就会在程序启动时做准备工作，此时DynamicApi的路由则为api/services/SimpleDynamic
-每一个DynamicApi都只需继承自 ApplicationBizBase 即可获得 动态开放的能力
 ```c#
- public class ApplicationBizBase:IApplicationBiz,IHttpController
+ public class ApplicationServiceBase:IApplicationService,IHttpController
     {
        
     }
 ```
-从这里可以看出Dynamic ApplicationBiz 和一般 ApplicationBiz的区别 ，Dynamic ApplicationBiz 具有 HttpController的能力
-实现一个人简单的 Dynamic ApplicationBiz
+从这里可以看出Dynamic ApplicationService 和一般 ApplicationService的区别 ，Dynamic ApplicationService 具有 HttpController的能力
+实现一个人简单的 Dynamic ApplicationService
 ```c#
-public class StudentApplicationBiz:ApplicationBizBase
+public class StudentApplicationService:ApplicationServiceBase
     {
          public IEfRepository<Student> StudentRepository { get; set; }
          public virtual void AddToDb(IEnumerable<Student> students)
@@ -179,15 +178,15 @@ public class StudentApplicationBiz:ApplicationBizBase
          }
     }
 ```
-接着注册所有Dynamic ApplicationBiz
+接着注册所有Dynamic ApplicationService
 ```c#
-  DynamicApiControllerBuilder.ForAll<ApplicationBizBase>(Assembly.GetExecutingAssembly(), "SimpleDynamic").Build();
+  DynamicApiControllerBuilder.ForAll<ApplicationServiceBase>(Assembly.GetExecutingAssembly(), "SimpleDynamic").Build();
 ```
-这样便可以通过url /api/services/SimpleDynamic/Student/AddToDb 访问到 这个Biz ,Biz的路由方式和asp.net mvc 一样，通过约定来做，取Biz类名{Student}ApplicationBiz
+这样便可以通过url /api/services/SimpleDynamic/Student/AddToDb 访问到 这个Service ,Service的路由方式和asp.net mvc 一样，通过约定来做，取Service类名{Student}ApplicationService
 前半部分，并添加 方法名称，记住方法必须是public的
 对于方法参数的要求，get请求 一般用多参数方法
 ```c#
-public class StudentApplicationBiz:ApplicationBizBase
+public class StudentApplicationService:ApplicationServiceBase
     {
          public IEfRepository<Student> StudentRepository { get; set; }
          public virtual void GetSingle(string id,string name)
@@ -198,7 +197,7 @@ public class StudentApplicationBiz:ApplicationBizBase
 ```
 对于post请求 一般用 实体类接收
 ```c#
-public class StudentApplicationBiz:ApplicationBizBase
+public class StudentApplicationService:ApplicationServiceBase
     {
          public IEfRepository<Student> StudentRepository { get; set; }
          public virtual void Add(StudentVieWModel student)

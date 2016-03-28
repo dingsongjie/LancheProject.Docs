@@ -38,4 +38,4 @@
 
 
 
-在使用ApplicationBiz时，请求的异常处理处理，照常在Controller里去处理
+在使用ApplicationService时，请求的异常处理处理，照常在Controller里去处理

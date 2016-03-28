@@ -16,13 +16,13 @@ LancheProject Ìá¹©ÁËÁ½ÖÖ»º´æ ÄÚ´æ»º´æ ºÍredis»º´æ,ÔÚÊ¹ÓÃRedis»º´æ´æ·ÅÊµÌåÀàÊ±£¬¿
         }
     }
 ```
-Ö±½ÓÔÚBizÖĞÊ¹ÓÃ
+Ö±½ÓÔÚServiceÖĞÊ¹ÓÃ
 ```c#
- public class CacheTestBiz : ApplicationBizBase
+ public class CacheTestService : ApplicationServiceBase
     {
         private readonly ICacheManager cacheManager;
 
-        public CacheTestBiz(ICacheManager cacheManager)
+        public CacheTestService(ICacheManager cacheManager)
         {
             this.cacheManager = cacheManager;
             
@@ -62,13 +62,13 @@ LancheProject Ìá¹©ÁËÁ½ÖÖ»º´æ ÄÚ´æ»º´æ ºÍredis»º´æ,ÔÚÊ¹ÓÃRedis»º´æ´æ·ÅÊµÌåÀàÊ±£¬¿
 ```xml
  <add name="Lanche.Redis.Cache" connectionString="localhost ......" />
 ```
-È»ºóÖ±½ÓÔÚBizÖĞÊ¹ÓÃ¼´¿É
+È»ºóÖ±½ÓÔÚServiceÖĞÊ¹ÓÃ¼´¿É
 ```c#
- public class CacheTestBiz : ApplicationBizBase
+ public class CacheTestService : ApplicationServiceBase
     {
         private readonly ICacheManager cacheManager;
 
-        public CacheTestBiz(ICacheManager cacheManager)
+        public CacheTestService(ICacheManager cacheManager)
         {
             this.cacheManager = cacheManager;
             

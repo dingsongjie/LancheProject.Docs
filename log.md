@@ -18,13 +18,13 @@
 其中 app.UseLancheProject() 是使用LancheProject所必需的
 .UseLog4Net("log4net.config") 就是适使用log4作为日志，并指明了配置文件的名称
 配置文件的用法和log4net完全一致
-在Biz中的使用
+在Service中的使用
 ```c#
-  public class TestApplicationBiz : ApplicationBizBase
+  public class TestApplicationService : ApplicationServiceBase
     {
         private readonly ILogger _logger;
         ///构造函数注入
-        public TestApplicationBiz(ILogger logger)
+        public TestApplicationService(ILogger logger)
         {
            
             _logger = logger;

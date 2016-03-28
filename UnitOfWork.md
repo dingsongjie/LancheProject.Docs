@@ -16,7 +16,7 @@
         }
 
 ```
-如上所示这是一个业务类（包括普通ApplicationBiz和Dynamic ApplicationBiz）的一个public virtual方法,当执行这个方法前，框架会自动为此次请求的业务加一个工作单元,在方法1中调用了方法2 ，则他们两个方法将在同一个工作单元中
+如上所示这是一个业务类（包括普通ApplicationService和Dynamic ApplicationService）的一个public virtual方法,当执行这个方法前，框架会自动为此次请求的业务加一个工作单元,在方法1中调用了方法2 ，则他们两个方法将在同一个工作单元中
 ##如何关闭工作单元
 ```c#
           [UnitOfWork(IsDisabled =true)]
